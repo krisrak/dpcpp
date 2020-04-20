@@ -23,7 +23,7 @@ int main(){
         auto DATA = data_buffer.get_access<access::mode::read_write>(h);
         
         //# Parallel Computation on device
-        h.parallel_for(range<1>(N), [=] (id<1> i){
+        h.parallel_for<class kernel_doubler>(range<1>(N), [=] (id<1> i){
             DATA[i] *= 2;
         });
     });
